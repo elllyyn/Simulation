@@ -1,5 +1,5 @@
 package evenement;
 
 public interface Evenement {
-    public void runEvent();
+    public void lancerEvenement();
 }
