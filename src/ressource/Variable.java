@@ -14,8 +14,8 @@ public class Variable {
     public static List<Bus> queueReparation;
 
     public static final byte lambdaArriveeBus = 45;
-    public static final int tempsMinControle = 15;
-    public static final int tempsMaxControle = 65;
+    public static final byte tempsMinControle = 15;
+    public static final byte tempsMaxControle = 65;
     public static final int tempsMinReparation = 168;
     public static final int tempsMaxReparation = 330;
     public static final int tempsSimulation = 160 * 60;
