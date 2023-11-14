@@ -12,12 +12,11 @@ public class IndicateurStatistique {
 
     public void majAire(int h1, int h2){
         aireQueueControle+=(h2-h1)*aireQueueControle;
-
     }
 
     public void calculerStatistiques(){
-        tpsAttenteMoyFileControle = 1/Variable.nbBus * aireQueueControle;
-        tpsAttenteMoyFileReparation = 1/Variable.nbReparation * aireQueueReparation;
-        tauxUtilisationReparation = 1/(Echeancier.tpsSimulation * 2) * aireQueueReparation;
+        tpsAttenteMoyFileControle = 1 / Variable.nbBus * aireQueueControle;
+        tpsAttenteMoyFileReparation = 1 / Variable.nbReparation * aireQueueReparation;
+        tauxUtilisationReparation = 1 / (Echeancier.tpsSimulation * 2) * aireQueueReparation;
     }
 }
