@@ -3,7 +3,7 @@ import java.lang.Math;
 
 public class FonctionsUtiles {
     public static double loiExponentielle(double lambda) {
-        return -Math.log(Math.random()) / lambda;
+        return Math.log(1-Math.random())/(-lambda);
     }
 
     public static double loiUniforme(double a, double b) {
