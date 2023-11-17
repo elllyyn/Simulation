@@ -24,7 +24,7 @@ public class Echeancier extends ArrayList<Evenement> {
     }
 
     public Evenement retirerEcheancier() {
-        System.out.println("Evement retire : " + get(0).getClass().getName() + " à la date " + get(0).getTemps());
+        System.out.println("Evement retire : " + get(0).getClass().getName() + " a la date " + get(0).getTemps());
         return remove(0);
     }
 

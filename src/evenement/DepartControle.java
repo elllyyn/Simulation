@@ -9,13 +9,11 @@ public class DepartControle extends Evenement {
     public void lancerEvenement(Simulateur simulateur) {
         simulateur.setStatusControle(false);
 
+        if (FonctionsUtiles.loiUniforme(0.0, 1.0) <= 0.3) {
+            simulateur.addEventEcheancier(new ArriveeFileR(getTemps(), getBus()));
+        }
         if (simulateur.getListeBusFileC().size() > 0) {
             simulateur.addEventEcheancier(new AccesControle(getTemps(), simulateur.getListeBusFileC().get(0)));
-        } else {
-            if (FonctionsUtiles.loiUniforme(0, 1) <= 0.3) {
-                simulateur.addEventEcheancier(new ArriveeFileR(getTemps(), getBus()));
-            }
-
         }
     }
 

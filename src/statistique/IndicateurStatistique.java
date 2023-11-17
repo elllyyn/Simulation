@@ -61,11 +61,11 @@ public class IndicateurStatistique {
     public static void printStats(Simulateur simulateur)
     {
         System.out.println("\n----------STATS GLOBALES----------");
-        System.out.println("Temps d'attente moyen dans la file de controle : " + (tpsAttenteMoyFileControle + simulateur.getTempsAttToujoursFileCont()));
-        System.out.println("Temps d'attente moyen dans la file de reparation : " + (tpsAttenteMoyFileReparation + simulateur.getTempsAttToujoursFileRep()));
+        System.out.println("Temps d'attente moyen dans la file de controle : " + tpsAttenteMoyFileControle);
+        System.out.println("Temps d'attente moyen dans la file de reparation : " + tpsAttenteMoyFileReparation);
         System.out.println("Taux d'utilisation du poste de reparation : " + tauxUtilisationReparation);
-        System.out.println("Nombre de bus au total : " + simulateur.getNbBus());
-        System.out.println("Nombre de bus rentres dans la file de reparation : " + simulateur.getNbReparation());
+        System.out.println("Nombre de bus total : " + simulateur.getNbBus());
+        System.out.println("Taux de bus reparer : " + ((double)simulateur.getNbReparation() / (double)simulateur.getNbBus()) * 100 + "%");
     }
 
     public static void printTempsMaxContAndRep(Simulateur simulateur){

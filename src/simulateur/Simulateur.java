@@ -116,9 +116,9 @@ public class Simulateur {
 
         while (echeancier.getTaille() > 0) {
             Evenement event = echeancier.retirerEcheancier();
-            event.lancerEvenement(this);
             majDesAires(event.getTemps(), tempsSimulation);
             tempsSimulation = event.getTemps();
+            event.lancerEvenement(this);
         }
     }
 
