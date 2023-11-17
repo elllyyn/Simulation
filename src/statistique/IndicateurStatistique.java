@@ -58,11 +58,11 @@ public class IndicateurStatistique {
         IndicateurStatistique.airePosteReparation = airePosteReparation;
     }
 
-    public static void printStats()
+    public static void printStats(Simulateur simulateur)
     {
         System.out.println("\n----------STATS GLOBALES----------");
-        System.out.println("Temps d'attente moyen dans la file de controle : " + tpsAttenteMoyFileControle);
-        System.out.println("Temps d'attente moyen dans la file de reparation : " + tpsAttenteMoyFileReparation);
+        System.out.println("Temps d'attente moyen dans la file de controle : " + tpsAttenteMoyFileControle + simulateur.getTempsAttToujoursFileCont());
+        System.out.println("Temps d'attente moyen dans la file de reparation : " + tpsAttenteMoyFileReparation + simulateur.getTempsAttToujoursFileRep());
         System.out.println("Taux d'utilisation du poste de reparation : " + tauxUtilisationReparation);
     }
 

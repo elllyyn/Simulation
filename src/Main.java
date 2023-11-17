@@ -6,7 +6,7 @@ public class Main {
         Simulateur simulateur = new Simulateur();
 
         simulateur.lancerSimulation();
-        IndicateurStatistique.printStats();
+        IndicateurStatistique.printStats(simulateur);
         IndicateurStatistique.printTempsMaxContAndRep(simulateur);
     }
 }

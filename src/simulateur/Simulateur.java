@@ -6,6 +6,7 @@ import echeancier.Echeancier;
 import entite.Bus;
 import evenement.DebutSimulation;
 import evenement.Evenement;
+import utils.Constantes;
 
 public class Simulateur {
     private boolean statusControle;
@@ -135,5 +136,26 @@ public class Simulateur {
             }
         }
         return tempsMax;
+    }
+
+    public double getTempsAttToujoursFileCont(){
+        double tempsAtt = 0;
+        for (Bus bus : listeBusSysteme) {
+            if (bus.getTempsSortieFileCont() == 0) {
+                tempsAtt += Constantes.tempsSimulation - bus.getTempsEntreeFileCont();
+            }
+        }
+        return tempsAtt;
+    }
+
+    public double getTempsAttToujoursFileRep(){
+        double tempsAtt = 0;
+        for (Bus bus : listeBusSysteme) {
+            if (bus.getTempsSortieFileRep() == 0 && bus.getTempsEntreeFileRep() != 0) {
+                tempsAtt += Constantes.tempsSimulation - bus.getTempsEntreeFileRep();
+            }
+        }
+        
+        return tempsAtt;
     }
 }
