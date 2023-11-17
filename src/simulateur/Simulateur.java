@@ -6,6 +6,7 @@ import echeancier.Echeancier;
 import entite.Bus;
 import evenement.DebutSimulation;
 import evenement.Evenement;
+import statistique.IndicateurStatistique;
 import utils.Constantes;
 
 public class Simulateur {
@@ -17,12 +18,14 @@ public class Simulateur {
     private ArrayList<Bus> listeBusFileR;
     private ArrayList<Bus> listeBusSysteme;;
     private Echeancier echeancier;
+    private double tempsSimulation;
 
     public Simulateur() {
         statusControle = false;
         statusReparation = 0;
         nbBus = 0;
         nbReparation = 0;
+        tempsSimulation = 0;
         listeBusFileC = new ArrayList<Bus>();
         listeBusFileR = new ArrayList<Bus>();
         listeBusSysteme = new ArrayList<Bus>();
@@ -112,7 +115,10 @@ public class Simulateur {
         addEventEcheancier(new DebutSimulation(0, new Bus()));
 
         while (echeancier.getTaille() > 0) {
-            echeancier.retirerEcheancier().lancerEvenement(this);
+            Evenement event = echeancier.retirerEcheancier();
+            event.lancerEvenement(this);
+            majDesAires(event.getTemps(), tempsSimulation);
+            tempsSimulation = event.getTemps();
         }
     }
 
@@ -142,7 +148,7 @@ public class Simulateur {
         double tempsAtt = 0;
         for (Bus bus : listeBusSysteme) {
             if (bus.getTempsSortieFileCont() == 0) {
-                tempsAtt += Constantes.tempsSimulation - bus.getTempsEntreeFileCont();
+                tempsAtt += Constantes.dureeSimulation - bus.getTempsEntreeFileCont();
             }
         }
         return tempsAtt;
@@ -152,10 +158,16 @@ public class Simulateur {
         double tempsAtt = 0;
         for (Bus bus : listeBusSysteme) {
             if (bus.getTempsSortieFileRep() == 0 && bus.getTempsEntreeFileRep() != 0) {
-                tempsAtt += Constantes.tempsSimulation - bus.getTempsEntreeFileRep();
+                tempsAtt += Constantes.dureeSimulation - bus.getTempsEntreeFileRep();
             }
         }
         
         return tempsAtt;
+    }
+
+    public void majDesAires(double temps2, double temps1){
+        IndicateurStatistique.setAireQueueControle(IndicateurStatistique.getAireQueueControle() + (temps2 - temps1) * listeBusFileC.size());
+        IndicateurStatistique.setAireQueueReparation(IndicateurStatistique.getAireQueueReparation() + (temps2 - temps1) * listeBusFileR.size());
+        IndicateurStatistique.setAirePosteReparation(IndicateurStatistique.getAirePosteReparation() + (temps2 - temps1) * statusReparation);
     }
 }

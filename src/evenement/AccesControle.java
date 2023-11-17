@@ -2,7 +2,6 @@ package evenement;
 
 import entite.Bus;
 import simulateur.Simulateur;
-import statistique.IndicateurStatistique;
 import utils.*;
 
 public class AccesControle extends Evenement {
@@ -10,8 +9,6 @@ public class AccesControle extends Evenement {
     public void lancerEvenement(Simulateur simulateur) {
         simulateur.removeBusFileC(getBus());
         getBus().setTempsSortieFileCont(getTemps());
-        IndicateurStatistique.setAireQueueControle(IndicateurStatistique.getAireQueueControle()
-                + (getTemps() - getBus().getTempsEntreeFileCont()));
 
         simulateur.setStatusControle(true);
         simulateur.addEventEcheancier(new DepartControle(getTemps()

@@ -12,7 +12,7 @@ public class FinSimulation extends Evenement {
 
         IndicateurStatistique.setTpsAttenteMoyFileControle(IndicateurStatistique.getAireQueueControle() / simulateur.getNbBus());
         IndicateurStatistique.setTpsAttenteMoyFileReparation(IndicateurStatistique.getAireQueueReparation() / simulateur.getNbReparation());
-        IndicateurStatistique.setTauxUtilisationReparation(IndicateurStatistique.getAirePosteReparation() / (2 * Constantes.tempsSimulation));
+        IndicateurStatistique.setTauxUtilisationReparation(IndicateurStatistique.getAirePosteReparation() / (2 * Constantes.dureeSimulation));
     }
 
     public FinSimulation(double temps, Bus bus) {
