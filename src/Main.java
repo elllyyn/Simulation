@@ -7,5 +7,6 @@ public class Main {
 
         simulateur.lancerSimulation();
         IndicateurStatistique.printStats();
+        IndicateurStatistique.printTempsMaxContAndRep(simulateur);
     }
 }

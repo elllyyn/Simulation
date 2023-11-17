@@ -114,4 +114,26 @@ public class Simulateur {
             echeancier.retirerEcheancier().lancerEvenement(this);
         }
     }
+
+    public double getTempsMaxAttControle(){
+        double tempsMax = 0;
+        for (Bus bus : listeBusSysteme) {
+            double tempsAttControle = bus.getTempsSortieFileCont() - bus.getTempsEntreeFileCont();
+            if (tempsAttControle > tempsMax) {
+                tempsMax = tempsAttControle;
+            }
+        }
+        return tempsMax;
+    }
+
+    public double getTempsMaxAttRep(){
+        double tempsMax = 0;
+        for (Bus bus : listeBusSysteme) {
+            double tempsAttRep = bus.getTempsSortieFileRep() - bus.getTempsEntreeFileRep();
+            if (tempsAttRep > tempsMax) {
+                tempsMax = tempsAttRep;
+            }
+        }
+        return tempsMax;
+    }
 }
