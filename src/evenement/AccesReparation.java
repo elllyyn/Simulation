@@ -1,18 +1,21 @@
 package evenement;
 
-import echeancier.Echeancier;
-import ressource.Variable;
+import entite.Bus;
+import simulateur.Simulateur;
+import utils.Constantes;
 import utils.FonctionsUtiles;
 
-public class AccesReparation implements Evenement {
-    @Override public void lancerEvenement() {
-        Variable.queueReparation--;
-        Variable.statusReparartion++;
-        int tempsReparation = (int) (Echeancier.tpsSimulation + FonctionsUtiles.loiUniforme(Variable.tempsMinReparation, Variable.tempsMaxReparation));
-        Echeancier.insererEcheancier(new DepartReparation(), tempsReparation);
+public class AccesReparation extends Evenement {
+    @Override
+    public void lancerEvenement(Simulateur simulateur) {
+        simulateur.removeBusFileR(getBus());
+        simulateur.setStatusReparation((byte)(simulateur.getStatusReparation() + 1));
+        double tempsReparation = (getTemps()
+                + FonctionsUtiles.loiUniforme(Constantes.tempsMinReparation, Constantes.tempsMaxReparation));
+        simulateur.addEventEcheancier(new DepartReparation(tempsReparation, getBus()));
     }
 
-    public AccesReparation() {
-        lancerEvenement();
+    public AccesReparation(double temps, Bus bus) {
+        super(temps, bus);
     }
 }

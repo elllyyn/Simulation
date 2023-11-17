@@ -1,15 +1,15 @@
 package evenement;
 
-import echeancier.Echeancier;
+import entite.Bus;
+import simulateur.Simulateur;
 
-public class FinSimulation implements Evenement{
-    @Override public void lancerEvenement() {
-        while (Echeancier.evenements.size() > 0) {
-            Echeancier.evenements.remove(0);
-        }
+public class FinSimulation extends Evenement {
+    @Override
+    public void lancerEvenement(Simulateur simulateur) {
+        simulateur.getEcheancier().getEvenements().clear();
     }
 
-    public FinSimulation() {
-        lancerEvenement();
+    public FinSimulation(double temps, Bus bus) {
+        super(temps, bus);
     }
 }

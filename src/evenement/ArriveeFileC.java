@@ -1,18 +1,20 @@
 package evenement;
 
-import echeancier.Echeancier;
-import ressource.Variable;
+import entite.Bus;
+import simulateur.Simulateur;
 
-public class ArriveeFileC implements Evenement {
-    @Override public void lancerEvenement() {
-        Variable.queueControle++;
+public class ArriveeFileC extends Evenement {
+    @Override
+    public void lancerEvenement(Simulateur simulateur) {
+        simulateur.addBusFileC(getBus());
+        getBus().setTempsEntreeFileCont(getTemps());
 
-        if (Variable.statusControle){
-            Echeancier.insererEcheancier(new AccesControle(), Echeancier.tpsSimulation);
+        if (!simulateur.getStatusControle()) {
+            simulateur.addEventEcheancier(new AccesControle(getTemps(), getBus()));
         }
     }
 
-    public ArriveeFileC() {
-        lancerEvenement();
+    public ArriveeFileC(double tempsSimu, Bus bus) {
+        super(tempsSimu, bus);
     }
 }

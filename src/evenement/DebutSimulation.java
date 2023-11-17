@@ -1,18 +1,19 @@
 package evenement;
 
-import echeancier.Echeancier;
-import ressource.Variable;
-import utils.FonctionsUtiles;
+import entite.Bus;
+import simulateur.Simulateur;
+import utils.*;
 
-public class DebutSimulation implements Evenement {
-    @Override public void lancerEvenement() {
-        Variable.initialiser();
-        int tempsArrivee = (int) (Echeancier.tpsSimulation + FonctionsUtiles.loiExponentielle(Variable.lambdaArriveeBus));
-        Echeancier.insererEcheancier(new ArriveeBus(), tempsArrivee);
-        Echeancier.insererEcheancier(new FinSimulation(), Variable.tempsSimulation);
+public class DebutSimulation extends Evenement {
+    @Override
+    public void lancerEvenement(Simulateur simulateur) {
+        double tempsArrivee = getTemps()
+                + FonctionsUtiles.loiExponentielle(Constantes.lambdaArriveeBus);
+        simulateur.addEventEcheancier(new ArriveeBus(tempsArrivee, new Bus()));
+        simulateur.addEventEcheancier(new FinSimulation(getTemps() + Constantes.tempsSimulation, new Bus()));
     }
 
-    public DebutSimulation() {
-        lancerEvenement();
+    public DebutSimulation(double temps, Bus bus) {
+        super(temps, bus);
     }
 }

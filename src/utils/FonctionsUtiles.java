@@ -6,11 +6,7 @@ public class FonctionsUtiles {
         return -Math.log(Math.random()) / lambda;
     }
 
-    public static double loiUniforme(int a, int b) {
+    public static double loiUniforme(double a, double b) {
         return a + (b - a) * Math.random();
-    }
-
-    public static boolean doitReparer() {
-        return Math.random() <= 0.3;
     }
 }

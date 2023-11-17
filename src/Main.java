@@ -1,5 +1,9 @@
+import simulateur.Simulateur;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Simulateur simulateur = new Simulateur();
+
+        simulateur.lancerSimulation();
     }
 }

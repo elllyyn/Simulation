@@ -1,19 +1,19 @@
 package evenement;
 
-import echeancier.Echeancier;
-import ressource.Variable;
+import entite.Bus;
+import simulateur.Simulateur;
 
-public class ArriveeFileR implements Evenement {
-    @Override public void lancerEvenement() {
-        Variable.queueReparation++;
-        Variable.nbReparation++;
-        
-        if (Variable.statusReparartion < 2){
-            Echeancier.insererEcheancier(new AccesReparation(), Echeancier.tpsSimulation);
+public class ArriveeFileR extends Evenement {
+    @Override
+    public void lancerEvenement(Simulateur simulateur) {
+        simulateur.addBusFileR(getBus());
+
+        if (simulateur.getStatusReparation() < 2) {
+            simulateur.addEventEcheancier(new AccesReparation(getTemps(), getBus()));
         }
     }
-    
-    public ArriveeFileR() {
-        lancerEvenement();
+
+    public ArriveeFileR(double temps, Bus bus) {
+        super(temps, bus);
     }
 }
