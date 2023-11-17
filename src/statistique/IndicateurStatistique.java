@@ -1,19 +1,65 @@
 package statistique;
 
 public class IndicateurStatistique {
-    public static double tpsAttenteMoyFileControle;
-    public static double tpsAttenteMoyFileReparation;
-    public static double tauxUtilisationReparation;
+    private static double tpsAttenteMoyFileControle = 0;
+    private static double tpsAttenteMoyFileReparation = 0;
+    private static double tauxUtilisationReparation = 0;
     private static double aireQueueControle = 0;
     private static double aireQueueReparation = 0;
+    private static double airePosteReparation = 0;
 
-    public void majAire(int h1, int h2) {
-        aireQueueControle += (h2 - h1) * aireQueueControle;
+    public static double getTpsAttenteMoyFileControle() {
+        return tpsAttenteMoyFileControle;
     }
 
-    // public void calculerStatistiques() {
-    //     tpsAttenteMoyFileControle = 1 / Variable.nbBus * aireQueueControle;
-    //     tpsAttenteMoyFileReparation = 1 / Variable.nbReparation * aireQueueReparation;
-    //     tauxUtilisationReparation = 1 / (Echeancier.tpsSimulation * 2) * aireQueueReparation;
-    // }
+    public static void setTpsAttenteMoyFileControle(double tpsAttenteMoyFileControle) {
+        IndicateurStatistique.tpsAttenteMoyFileControle = tpsAttenteMoyFileControle;
+    }
+
+    public static double getTpsAttenteMoyFileReparation() {
+        return tpsAttenteMoyFileReparation;
+    }
+
+    public static void setTpsAttenteMoyFileReparation(double tpsAttenteMoyFileReparation) {
+        IndicateurStatistique.tpsAttenteMoyFileReparation = tpsAttenteMoyFileReparation;
+    }
+
+    public static double getTauxUtilisationReparation() {
+        return tauxUtilisationReparation;
+    }
+
+    public static void setTauxUtilisationReparation(double tauxUtilisationReparation) {
+        IndicateurStatistique.tauxUtilisationReparation = tauxUtilisationReparation;
+    }
+
+    public static double getAireQueueControle() {
+        return aireQueueControle;
+    }
+
+    public static void setAireQueueControle(double aireQueueControle) {
+        IndicateurStatistique.aireQueueControle = aireQueueControle;
+    }
+
+    public static double getAireQueueReparation() {
+        return aireQueueReparation;
+    }
+
+    public static void setAireQueueReparation(double aireQueueReparation) {
+        IndicateurStatistique.aireQueueReparation = aireQueueReparation;
+    }
+
+    public static double getAirePosteReparation() {
+        return airePosteReparation;
+    }
+
+    public static void setAirePosteReparation(double airePosteReparation) {
+        IndicateurStatistique.airePosteReparation = airePosteReparation;
+    }
+
+    public static void printStats()
+    {
+        System.out.println("Temps d'attente moyen dans la file de controle : " + tpsAttenteMoyFileControle);
+        System.out.println("Temps d'attente moyen dans la file de reparation : " + tpsAttenteMoyFileReparation);
+        System.out.println("Taux d'utilisation du poste de reparation : " + tauxUtilisationReparation);
+    }
 }

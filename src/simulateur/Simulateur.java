@@ -41,7 +41,10 @@ public class Simulateur {
     }
 
     public void setStatusReparation(byte statusReparation) {
-        this.statusReparation = statusReparation;
+        if (statusReparation == 0 || statusReparation == 1 || statusReparation == 2)
+            this.statusReparation = statusReparation;
+        else
+            System.out.println("Erreur : statusReparation doit être 0, 1 ou 2");
     }
 
     public int getNbBus() {
@@ -102,10 +105,6 @@ public class Simulateur {
 
     public void addEventEcheancier(Evenement event) {
         echeancier.insererEcheancier(event);
-    }
-
-    public void removeEventEcheancier() {
-        echeancier.retirerEcheancier();
     }
 
     public void lancerSimulation() {
