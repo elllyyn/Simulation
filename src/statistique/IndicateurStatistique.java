@@ -92,7 +92,7 @@ public class IndicateurStatistique {
         System.out.println("Temps d'attente moyen dans la file de controle avec les bus toujours en attente: " + tpsAttenteMoyFileControle);
         System.out.println("Temps d'attente moyen dans la file de reparation avec les bus toujours en attente: " + tpsAttenteMoyFileReparation);
         System.out.println("Taux d'utilisation du poste de reparation : " + tauxUtilisationReparation);
-        System.out.println("Nombre de bus en attente : " + (simulateur.getListeBusFileC().size() + simulateur.getListeBusFileR().size()));
+        System.out.println("Nombre de bus en attente -> " + simulateur.getListeBusFileC().size() + " dans la file de controle et " + simulateur.getListeBusFileR().size() + " dans la file de reparation");
         System.out.println("Nombre de bus total : " + simulateur.getNbBus());
         System.out.println("Taux de bus repare : " + ((double)simulateur.getNbReparation() / (double)simulateur.getNbBus()) * 100 + "%");
     }
