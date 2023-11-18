@@ -13,9 +13,6 @@ public class ArriveeFileR extends Evenement {
         if (simulateur.getStatusReparation() < 2) {
             simulateur.addEventEcheancier(new AccesReparation(getTemps(), getBus()));
         }
-        else {
-            System.out.println("Bus est en attente de reparation");
-        }
     }
 
     public ArriveeFileR(double temps, Bus bus) {
