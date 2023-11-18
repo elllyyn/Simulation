@@ -10,7 +10,6 @@ public class ArriveeBus extends Evenement {
         simulateur.addEventEcheancier(
                 new ArriveeBus(getTemps() + FonctionsUtiles.loiExponentielle(Constantes.lambdaArriveeBus), new Bus()));
         simulateur.setNbBus(simulateur.getNbBus() + 1);
-        simulateur.addBusSysteme(getBus());
         simulateur.addEventEcheancier(new ArriveeFileC(getTemps(), getBus()));
     }
 

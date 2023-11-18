@@ -16,7 +16,6 @@ public class Simulateur {
     private int nbReparation;
     private ArrayList<Bus> listeBusFileC;
     private ArrayList<Bus> listeBusFileR;
-    private ArrayList<Bus> listeBusSysteme;;
     private Echeancier echeancier;
     private double tempsSimulation;
 
@@ -28,7 +27,6 @@ public class Simulateur {
         tempsSimulation = 0;
         listeBusFileC = new ArrayList<Bus>();
         listeBusFileR = new ArrayList<Bus>();
-        listeBusSysteme = new ArrayList<Bus>();
         echeancier = new Echeancier();
     }
 
@@ -75,16 +73,8 @@ public class Simulateur {
         return listeBusFileR;
     }
 
-    public ArrayList<Bus> getListeBusSysteme() {
-        return listeBusSysteme;
-    }
-
     public Echeancier getEcheancier() {
         return echeancier;
-    }
-
-    public void addBusSysteme(Bus bus) {
-        listeBusSysteme.add(bus);
     }
 
     public void addBusFileC(Bus bus) {
@@ -93,10 +83,6 @@ public class Simulateur {
 
     public void addBusFileR(Bus bus) {
         listeBusFileR.add(bus);
-    }
-
-    public void removeBusSysteme(Bus bus) {
-        listeBusSysteme.remove(bus);
     }
 
     public void removeBusFileC(Bus bus) {
@@ -122,47 +108,22 @@ public class Simulateur {
         }
     }
 
-    public double getTempsMaxAttControle(){
-        double tempsMax = 0;
-        for (Bus bus : listeBusSysteme) {
-            double tempsAttControle = bus.getTempsSortieFileCont() - bus.getTempsEntreeFileCont();
-            if (tempsAttControle > tempsMax) {
-                tempsMax = tempsAttControle;
-            }
+    public double getTempsToujoursFileCont()
+    {
+        double temps = 0;
+        for (Bus bus : listeBusFileC) {
+            temps += Constantes.dureeSimulation - bus.getTempsEntreeFileCont();
         }
-        return tempsMax;
+        return temps / nbBus;
     }
 
-    public double getTempsMaxAttRep(){
-        double tempsMax = 0;
-        for (Bus bus : listeBusSysteme) {
-            double tempsAttRep = bus.getTempsSortieFileRep() - bus.getTempsEntreeFileRep();
-            if (tempsAttRep > tempsMax) {
-                tempsMax = tempsAttRep;
-            }
+    public double getTempsToujoursFileRep()
+    {
+        double temps = 0;
+        for (Bus bus : listeBusFileR) {
+            temps += Constantes.dureeSimulation - bus.getTempsEntreeFileRep();
         }
-        return tempsMax;
-    }
-
-    public double getTempsAttToujoursFileCont(){
-        double tempsAtt = 0;
-        for (Bus bus : listeBusSysteme) {
-            if (bus.getTempsSortieFileCont() == 0) {
-                tempsAtt += Constantes.dureeSimulation - bus.getTempsEntreeFileCont();
-            }
-        }
-        return tempsAtt;
-    }
-
-    public double getTempsAttToujoursFileRep(){
-        double tempsAtt = 0;
-        for (Bus bus : listeBusSysteme) {
-            if (bus.getTempsSortieFileRep() == 0 && bus.getTempsEntreeFileRep() != 0) {
-                tempsAtt += Constantes.dureeSimulation - bus.getTempsEntreeFileRep();
-            }
-        }
-        
-        return tempsAtt;
+        return temps / nbBus;
     }
 
     public void majDesAires(double temps2, double temps1){
