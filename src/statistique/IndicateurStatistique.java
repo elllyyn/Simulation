@@ -94,7 +94,7 @@ public class IndicateurStatistique {
         System.out.println("Taux d'utilisation du poste de reparation : " + tauxUtilisationReparation);
         System.out.println("Nombre de bus en attente : " + (simulateur.getListeBusFileC().size() + simulateur.getListeBusFileR().size()));
         System.out.println("Nombre de bus total : " + simulateur.getNbBus());
-        System.out.println("Taux de bus reparer : " + ((double)simulateur.getNbReparation() / (double)simulateur.getNbBus()) * 100 + "%");
+        System.out.println("Taux de bus repare : " + ((double)simulateur.getNbReparation() / (double)simulateur.getNbBus()) * 100 + "%");
     }
 
     public static void printTempsMaxContAndRep(Simulateur simulateur){
