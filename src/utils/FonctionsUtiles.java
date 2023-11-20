@@ -38,7 +38,7 @@ public class FonctionsUtiles {
         try {
             FileWriter fw = new FileWriter(file);
 
-            fw.write("SIMULATEUR DE BUS, " + Constantes.dureeSimulation + "\n");
+            fw.write("SIMULATEUR DE BUS; " + Constantes.dureeSimulation + "\n");
 
             fw.write("Temps d'attente moyen dans la file de controle sans les bus toujours en attente; " + (IndicateurStatistique.getTpsAttenteMoyFileControle() - (double)simulateur.getTempsToujoursFileCont()) + "\n");
             fw.write("Temps d'attente moyen dans la file de reparation sans les bus toujours en attente; " + (IndicateurStatistique.getTpsAttenteMoyFileReparation() - (double)simulateur.getTempsToujoursFileRep()) + "\n");
