@@ -23,6 +23,12 @@ public class FonctionsUtiles {
     }
 
     public static void exportSimuToCSV(Simulateur simulateur, String nomFichier){
+        File folder = new File("./results");
+
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
+
         File file = new File("./results/" + nomFichier + ".csv");
 
         if (file.exists()) {
