@@ -11,21 +11,24 @@ public class Main {
         simulateur.lancerSimulation();
         IndicateurStatistique.printStats(simulateur);
         IndicateurStatistique.printTempsMaxContAndRep(simulateur);
+        FonctionsUtiles.exportSimuToCSV(simulateur, "results40");
 
         Constantes.dureeSimulation = 80;
         simulateur.lancerSimulation();
         IndicateurStatistique.printStats(simulateur);
         IndicateurStatistique.printTempsMaxContAndRep(simulateur);
+        FonctionsUtiles.exportSimuToCSV(simulateur, "results80");
 
         Constantes.dureeSimulation = 160;
         simulateur.lancerSimulation();
         IndicateurStatistique.printStats(simulateur);
         IndicateurStatistique.printTempsMaxContAndRep(simulateur);
+        FonctionsUtiles.exportSimuToCSV(simulateur, "results160");
 
         Constantes.dureeSimulation = 240;
         simulateur.lancerSimulation();
         IndicateurStatistique.printStats(simulateur);
         IndicateurStatistique.printTempsMaxContAndRep(simulateur);
-        FonctionsUtiles.exportSimuToCSV(simulateur);
+        FonctionsUtiles.exportSimuToCSV(simulateur, "results240");
     }
 }

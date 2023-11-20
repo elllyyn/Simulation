@@ -22,8 +22,8 @@ public class FonctionsUtiles {
         return a + u * (b - a);
     }
 
-    public static void exportSimuToCSV(Simulateur simulateur){
-        File file = new File("./results/resultats.csv");
+    public static void exportSimuToCSV(Simulateur simulateur, String nomFichier){
+        File file = new File("./results/" + nomFichier + ".csv");
 
         if (file.exists()) {
             file.delete();
