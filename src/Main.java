@@ -1,5 +1,6 @@
 import simulateur.Simulateur;
 import statistique.IndicateurStatistique;
+import utils.FonctionsUtiles;
 
 public class Main {
     public static void main(String[] args) {
@@ -8,5 +9,6 @@ public class Main {
         simulateur.lancerSimulation();
         IndicateurStatistique.printStats(simulateur);
         IndicateurStatistique.printTempsMaxContAndRep(simulateur);
+        FonctionsUtiles.exportSimuToCSV(simulateur);
     }
 }
