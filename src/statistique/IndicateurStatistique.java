@@ -13,6 +13,17 @@ public class IndicateurStatistique {
     private static double aireQueueReparation = 0;
     private static double airePosteReparation = 0;
 
+    public static void clear(){
+        tpsAttenteMoyFileControle = 0;
+        tpsAttenteMoyFileReparation = 0;
+        tauxUtilisationReparation = 0;
+        tempsMaxAttControle = 0;
+        tempsMaxAttReparation = 0;
+        aireQueueControle = 0;
+        aireQueueReparation = 0;
+        airePosteReparation = 0;
+    }
+
     public static double getTpsAttenteMoyFileControle() {
         return tpsAttenteMoyFileControle;
     }
