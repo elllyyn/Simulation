@@ -57,4 +57,16 @@ public class FonctionsUtiles {
             System.out.println("Erreur write file: " + e.getMessage());
         }
     }
+
+    public static String tempsToHeure(Double temps) {
+        // Traduit le temps en pourcentage en un temps en heure
+        Double tempsRes = 60 * temps;
+
+        // Calcule le nombre d'heures & de minutes
+        Double min = tempsRes % 60;
+        int heures = (int)(tempsRes % 60 - min);
+
+        // Retourne un affichage au bon format
+        return heures + " heure(s) "+min+" minute(s)";
+    }
 }
