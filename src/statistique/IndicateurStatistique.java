@@ -2,6 +2,7 @@ package statistique;
 
 import simulateur.Simulateur;
 import utils.Constantes;
+import utils.FonctionsUtiles;
 
 public class IndicateurStatistique {
     private static double tpsAttenteMoyFileControle = 0;
@@ -110,7 +111,7 @@ public class IndicateurStatistique {
 
     public static void printTempsMaxContAndRep(Simulateur simulateur){
         System.out.println("\n----------STATS BUS----------");
-        System.out.println("Temps max d'attente dans la file de controle : " + IndicateurStatistique.getTempsMaxAttControle());
-        System.out.println("Temps max d'attente dans la file de reparation : " + IndicateurStatistique.getTempsMaxAttReparation());
+        System.out.println("Temps max d'attente dans la file de controle : " + FonctionsUtiles.tempsToHeure(IndicateurStatistique.getTempsMaxAttControle()));
+        System.out.println("Temps max d'attente dans la file de reparation : " + FonctionsUtiles.tempsToHeure(IndicateurStatistique.getTempsMaxAttReparation()));
     }
 }
