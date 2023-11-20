@@ -1,4 +1,5 @@
 package utils;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.lang.Math;
@@ -61,6 +62,67 @@ public class FonctionsUtiles {
         }
         catch (Exception e) {
             System.out.println("Erreur write file: " + e.getMessage());
+        }
+    }
+
+    public static void exportIndStatsToCSV(Simulateur simulateur, String nomFichier){
+        File file = new File("./results/" + nomFichier);
+
+        try{
+            // Utilisez le constructeur FileWriter avec le deuxième argument pour append (true)
+            FileWriter fw = new FileWriter(file, true);
+
+            // Utilisez BufferedWriter pour améliorer les performances d'écriture
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            // Écrivez les données dans le fichier
+            bw.write(IndicateurStatistique.getTpsAttenteMoyFileReparation() + "\n");
+            bw.write(IndicateurStatistique.getTpsAttenteMoyFileControle() + "\n");
+            bw.write(IndicateurStatistique.getTauxUtilisationReparation() + "\n\n");
+
+            // Fermez BufferedWriter pour s'assurer que toutes les données sont écrites dans le fichier
+            bw.close();
+        
+        } catch (Exception e) {
+            System.out.println("Erreur write file: " + e.getMessage());
+        }
+    }
+
+    public static void createFoldersAndFiles() {
+        File folder = new File("./results");
+
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
+
+        File file = new File("./results/results40.csv");
+        File file2 = new File("./results/results80.csv");
+        File file3 = new File("./results/results160.csv");
+        File file4 = new File("./results/results240.csv");
+
+        if (file.exists()) {
+            file.delete();
+        }
+
+        if (file2.exists()) {
+            file2.delete();
+        }
+
+        if (file3.exists()) {
+            file3.delete();
+        }
+
+        if (file4.exists()) {
+            file4.delete();
+        }
+
+        try {
+            file.createNewFile();
+            file2.createNewFile();
+            file3.createNewFile();
+            file4.createNewFile();
+        } catch (Exception e) {
+            System.out.println("Erreur create file: " + e.getMessage());
         }
     }
 

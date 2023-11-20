@@ -1,34 +1,39 @@
 import simulateur.Simulateur;
-import statistique.IndicateurStatistique;
 import utils.FonctionsUtiles;
 import utils.Constantes;
 
 public class Main {
     public static void main(String[] args) {
-        Simulateur simulateur = new Simulateur();
+        //Tableau de 1000 simulateurs
+        Simulateur[] simulateurs = new Simulateur[4000];
+        FonctionsUtiles.createFoldersAndFiles();
 
-        Constantes.dureeSimulation = 40;
-        simulateur.lancerSimulation();
-        IndicateurStatistique.printStats(simulateur);
-        IndicateurStatistique.printTempsMaxContAndRep(simulateur);
-        FonctionsUtiles.exportSimuToCSV(simulateur, "results40");
+        for (int i = 0; i < 1000; i++) {
+            Constantes.dureeSimulation = 40;
+            simulateurs[i] = new Simulateur();
+            simulateurs[i].lancerSimulation();
+            FonctionsUtiles.exportIndStatsToCSV(simulateurs[i], "results40.csv");
+        }
 
-        Constantes.dureeSimulation = 80;
-        simulateur.lancerSimulation();
-        IndicateurStatistique.printStats(simulateur);
-        IndicateurStatistique.printTempsMaxContAndRep(simulateur);
-        FonctionsUtiles.exportSimuToCSV(simulateur, "results80");
+        for (int i = 1000; i < 2000; i++) {
+            Constantes.dureeSimulation = 80;
+            simulateurs[i] = new Simulateur();
+            simulateurs[i].lancerSimulation();
+            FonctionsUtiles.exportIndStatsToCSV(simulateurs[i], "results80.csv");
+        }
 
-        Constantes.dureeSimulation = 160;
-        simulateur.lancerSimulation();
-        IndicateurStatistique.printStats(simulateur);
-        IndicateurStatistique.printTempsMaxContAndRep(simulateur);
-        FonctionsUtiles.exportSimuToCSV(simulateur, "results160");
+        for (int i = 2000; i < 3000; i++) {
+            Constantes.dureeSimulation = 160;
+            simulateurs[i] = new Simulateur();
+            simulateurs[i].lancerSimulation();
+            FonctionsUtiles.exportIndStatsToCSV(simulateurs[i], "results160.csv");
+        }
 
-        Constantes.dureeSimulation = 240;
-        simulateur.lancerSimulation();
-        IndicateurStatistique.printStats(simulateur);
-        IndicateurStatistique.printTempsMaxContAndRep(simulateur);
-        FonctionsUtiles.exportSimuToCSV(simulateur, "results240");
+        for (int i = 3000; i < 4000; i++) {
+            Constantes.dureeSimulation = 240;
+            simulateurs[i] = new Simulateur();
+            simulateurs[i].lancerSimulation();
+            FonctionsUtiles.exportIndStatsToCSV(simulateurs[i], "results240.csv");
+        }
     }
 }
