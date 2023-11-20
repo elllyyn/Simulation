@@ -30,6 +30,17 @@ public class Simulateur {
         echeancier = new Echeancier();
     }
 
+    public void clear() {
+        statusControle = false;
+        statusReparation = 0;
+        nbBus = 0;
+        nbReparation = 0;
+        tempsSimulation = 0;
+        listeBusFileC = new ArrayList<Bus>();
+        listeBusFileR = new ArrayList<Bus>();
+        echeancier = new Echeancier();
+    }
+
     public boolean getStatusControle() {
         return statusControle;
     }
@@ -98,6 +109,10 @@ public class Simulateur {
     }
 
     public void lancerSimulation() {
+        clear();
+        IndicateurStatistique.clear();
+        System.out.println();
+        System.out.println("----------LANCEMENT SIMUALTION "+Constantes.dureeSimulation+"H----------");
         addEventEcheancier(new DebutSimulation(0, new Bus()));
 
         while (echeancier.getTaille() > 0) {
