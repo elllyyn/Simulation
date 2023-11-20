@@ -10,7 +10,6 @@ public class DebutSimulation extends Evenement {
         double tempsArrivee = getTemps()
                 + FonctionsUtiles.loiExponentielle(Constantes.lambdaArriveeBus);
         simulateur.addEventEcheancier(new ArriveeBus(tempsArrivee, new Bus()));
-        simulateur.addEventEcheancier(new FinSimulation(getTemps() + Constantes.dureeSimulation, new Bus()));
     }
 
     public DebutSimulation(double temps, Bus bus) {

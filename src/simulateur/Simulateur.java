@@ -6,6 +6,7 @@ import echeancier.Echeancier;
 import entite.Bus;
 import evenement.DebutSimulation;
 import evenement.Evenement;
+import evenement.FinSimulation;
 import statistique.IndicateurStatistique;
 import utils.Constantes;
 
@@ -18,6 +19,7 @@ public class Simulateur {
     private ArrayList<Bus> listeBusFileR;
     private Echeancier echeancier;
     private double tempsSimulation;
+    private int nbBusAccesControle;
 
     public Simulateur() {
         statusControle = false;
@@ -47,6 +49,14 @@ public class Simulateur {
 
     public void setStatusControle(boolean statusControle) {
         this.statusControle = statusControle;
+    }
+
+    public int getNbBusAccesControle() {
+        return nbBusAccesControle;
+    }
+
+    public void setNbBusAccesControle(int nbBusAccesControle) {
+        this.nbBusAccesControle = nbBusAccesControle;
     }
 
     public byte getStatusReparation() {
@@ -115,12 +125,18 @@ public class Simulateur {
         System.out.println("----------LANCEMENT SIMUALTION "+Constantes.dureeSimulation+"H----------");
         addEventEcheancier(new DebutSimulation(0, new Bus()));
 
-        while (echeancier.getTaille() > 0) {
+        while (nbBusAccesControle < Constantes.nbBusControle) {
             Evenement event = echeancier.retirerEcheancier();
             majDesAires(event.getTemps(), tempsSimulation);
             tempsSimulation = event.getTemps();
             event.lancerEvenement(this);
         }
+
+        addEventEcheancier(new FinSimulation(tempsSimulation, new Bus()));
+        Evenement event = echeancier.retirerEcheancier();
+        majDesAires(event.getTemps(), tempsSimulation);
+        tempsSimulation = event.getTemps();
+        event.lancerEvenement(this);
     }
 
     public double getTempsToujoursFileCont()

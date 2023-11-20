@@ -10,6 +10,7 @@ public class AccesControle extends Evenement {
     public void lancerEvenement(Simulateur simulateur) {
         simulateur.removeBusFileC(getBus());
         getBus().setTempsSortieFileCont(getTemps());
+        simulateur.setNbBusAccesControle(simulateur.getNbBusAccesControle() + 1);
 
         if (getBus().getTempsSortieFileCont() - getBus().getTempsEntreeFileCont() > IndicateurStatistique.getTempsMaxAttControle()) {
             IndicateurStatistique.setTempsMaxAttControle(getBus().getTempsSortieFileCont() - getBus().getTempsEntreeFileCont());
