@@ -5,7 +5,7 @@ import utils.Constantes;
 
 public class Main {
     public static void main(String[] args) {
-        testSurUnSimulateur();
+        testHardStats();
     }
 
     public static void testSurUnSimulateur() {

@@ -83,20 +83,14 @@ public class FonctionsUtiles {
         File file = new File("./results/" + nomFichier);
 
         try {
-            // Utilisez le constructeur FileWriter avec le deuxième argument pour append
-            // (true)
             FileWriter fw = new FileWriter(file, true);
 
-            // Utilisez BufferedWriter pour améliorer les performances d'écriture
             BufferedWriter bw = new BufferedWriter(fw);
 
             // Écrivez les données dans le fichier
-            bw.write(IndicateurStatistique.getTpsAttenteMoyFileReparation() + "\n");
-            bw.write(IndicateurStatistique.getTpsAttenteMoyFileControle() + "\n");
-            bw.write(IndicateurStatistique.getTauxUtilisationReparation() + "\n\n");
+            bw.write(IndicateurStatistique.getTpsAttenteMoyFileReparation() + ";" + IndicateurStatistique.getTpsAttenteMoyFileControle() + ";" + IndicateurStatistique.getTauxUtilisationReparation() + "\n");
+            bw.write("\n");
 
-            // Fermez BufferedWriter pour s'assurer que toutes les données sont écrites dans
-            // le fichier
             bw.close();
 
         } catch (Exception e) {
@@ -105,15 +99,13 @@ public class FonctionsUtiles {
     }
 
     public static void createFoldersAndFiles() {
-        // Création du répertoire principal
+
         File mainFolder = new File("./results");
 
-        // Vérification et création du répertoire s'il n'existe pas
         if (!mainFolder.exists()) {
             mainFolder.mkdir();
         }
 
-        // Création des fichiers dans le répertoire
         createFile(mainFolder, "results40.csv");
         createFile(mainFolder, "results80.csv");
         createFile(mainFolder, "results160.csv");
@@ -121,16 +113,14 @@ public class FonctionsUtiles {
     }
 
     private static void createFile(File folder, String fileName) {
-        // Création du chemin complet du fichier
+
         File file = new File(folder, fileName);
 
-        // Suppression du fichier s'il existe déjà
         if (file.exists()) {
             file.delete();
         }
 
         try {
-            // Création du nouveau fichier
             file.createNewFile();
         } catch (IOException e) {
             System.out.println("Erreur lors de la création du fichier '" + fileName + "': " + e.getMessage());
