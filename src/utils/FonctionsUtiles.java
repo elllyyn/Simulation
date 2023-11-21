@@ -16,7 +16,7 @@ public class FonctionsUtiles {
     public static double loiExponentielle(double lambda) {
         double u = random.nextDouble();
 
-        return -Math.log(1 - u) / lambda;
+        return -Math.log(1 - u) / (1 / lambda);
     }
 
     public static double loiUniforme(double a, double b) {
