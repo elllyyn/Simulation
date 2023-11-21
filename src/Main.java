@@ -1,10 +1,24 @@
 import simulateur.Simulateur;
+import statistique.IndicateurStatistique;
 import utils.FonctionsUtiles;
 import utils.Constantes;
 
 public class Main {
     public static void main(String[] args) {
-        //Tableau de 1000 simulateurs
+        testSurUnSimulateur();
+    }
+
+    public static void testSurUnSimulateur() {
+        Simulateur simulateur = new Simulateur();
+        simulateur.lancerSimulation();
+        Constantes.dureeSimulation = 160;
+
+        IndicateurStatistique.printStats(simulateur);
+        IndicateurStatistique.printTempsMaxContAndRep(simulateur);
+    }
+
+    public static void testHardStats() {
+        // Tableau de 1000 simulateurs
         Simulateur[] simulateurs = new Simulateur[4000];
         FonctionsUtiles.createFoldersAndFiles();
 
