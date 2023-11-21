@@ -125,7 +125,7 @@ public class Simulateur {
         System.out.println("----------LANCEMENT SIMUALTION "+Constantes.dureeSimulation+"H----------");
         addEventEcheancier(new DebutSimulation(0, new Bus()));
 
-        while (nbBusAccesControle < Constantes.nbBusControle) {
+        while (nbBusAccesControle <= Constantes.nbBusMaxControle) {
             Evenement event = echeancier.retirerEcheancier();
             majDesAires(event.getTemps(), tempsSimulation);
             tempsSimulation = event.getTemps();

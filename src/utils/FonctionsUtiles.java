@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.Math;
+import java.util.List;
 import java.util.Random;
 
 import simulateur.Simulateur;
@@ -83,20 +84,38 @@ public class FonctionsUtiles {
         File file = new File("./results/" + nomFichier);
 
         try {
-            // Utilisez le constructeur FileWriter avec le deuxième argument pour append
-            // (true)
             FileWriter fw = new FileWriter(file, true);
 
-            // Utilisez BufferedWriter pour améliorer les performances d'écriture
             BufferedWriter bw = new BufferedWriter(fw);
 
             // Écrivez les données dans le fichier
-            bw.write(IndicateurStatistique.getTpsAttenteMoyFileReparation() + "\n");
-            bw.write(IndicateurStatistique.getTpsAttenteMoyFileControle() + "\n");
-            bw.write(IndicateurStatistique.getTauxUtilisationReparation() + "\n\n");
+            bw.write(IndicateurStatistique.getTpsAttenteMoyFileReparation() + ";" + IndicateurStatistique.getTpsAttenteMoyFileControle() + ";" + IndicateurStatistique.getTauxUtilisationReparation() + "\n");
+            bw.write("\n");
 
-            // Fermez BufferedWriter pour s'assurer que toutes les données sont écrites dans
-            // le fichier
+            bw.close();
+
+        } catch (Exception e) {
+            System.out.println("Erreur write file: " + e.getMessage());
+        }
+    }
+
+    public static void exportMethodeWelchToCSV(List<Double> moyennes, String nomFichier) {
+        File file = new File("./results/" + nomFichier);
+
+        try {
+            FileWriter fw = new FileWriter(file, true);
+
+            BufferedWriter bw = new BufferedWriter(fw);
+            int i = 0;
+            for(Double YiMobile : moyennes){
+                // Écrivez les données dans le fichier
+                bw.write(i+";"+YiMobile);
+                bw.write("\n");
+                i++;
+            }
+
+
+
             bw.close();
 
         } catch (Exception e) {
@@ -105,15 +124,13 @@ public class FonctionsUtiles {
     }
 
     public static void createFoldersAndFiles() {
-        // Création du répertoire principal
+
         File mainFolder = new File("./results");
 
-        // Vérification et création du répertoire s'il n'existe pas
         if (!mainFolder.exists()) {
             mainFolder.mkdir();
         }
 
-        // Création des fichiers dans le répertoire
         createFile(mainFolder, "results40.csv");
         createFile(mainFolder, "results80.csv");
         createFile(mainFolder, "results160.csv");
@@ -121,35 +138,30 @@ public class FonctionsUtiles {
     }
 
     private static void createFile(File folder, String fileName) {
-        // Création du chemin complet du fichier
+
         File file = new File(folder, fileName);
 
-        // Suppression du fichier s'il existe déjà
         if (file.exists()) {
             file.delete();
         }
 
         try {
-            // Création du nouveau fichier
             file.createNewFile();
         } catch (IOException e) {
             System.out.println("Erreur lors de la création du fichier '" + fileName + "': " + e.getMessage());
         }
     }
 
-    public static void main(String[] args) {
-        createFoldersAndFiles();
-    }
-
     public static String tempsToHeure(Double temps) {
         // Traduit le temps en pourcentage en un temps en heure
-        Double tempsRes = 60 * temps;
+        Double tempsRes = temps;
 
-        // Calcule le nombre d'heures & de minutes
-        Double min = tempsRes % 60;
-        int heures = (int) (tempsRes % 60 - min);
+        // Nombre d'heures est la partie entière
+        int heures = tempsRes.intValue();
 
-        // Retourne un affichage au bon format
+        // Nombre de minutes est la partie décimale * 60
+        int min = (int) ((tempsRes - heures) * 60);
+
         return heures + " heure(s) " + min + " minute(s)";
     }
 }
