@@ -89,7 +89,6 @@ public class FonctionsUtiles {
 
             // Écrivez les données dans le fichier
             bw.write(IndicateurStatistique.getTpsAttenteMoyFileReparation() + ";" + IndicateurStatistique.getTpsAttenteMoyFileControle() + ";" + IndicateurStatistique.getTauxUtilisationReparation() + "\n");
-            bw.write("\n");
 
             bw.close();
 
@@ -125,10 +124,6 @@ public class FonctionsUtiles {
         } catch (IOException e) {
             System.out.println("Erreur lors de la création du fichier '" + fileName + "': " + e.getMessage());
         }
-    }
-
-    public static void main(String[] args) {
-        createFoldersAndFiles();
     }
 
     public static String tempsToHeure(Double temps) {
