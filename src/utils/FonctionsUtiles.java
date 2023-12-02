@@ -88,7 +88,24 @@ public class FonctionsUtiles {
             BufferedWriter bw = new BufferedWriter(fw);
 
             // Écrivez les données dans le fichier
-            bw.write(IndicateurStatistique.getTpsAttenteMoyFileReparation() + ";" + IndicateurStatistique.getTpsAttenteMoyFileControle() + ";" + IndicateurStatistique.getTauxUtilisationReparation() + "\n");
+            bw.write((IndicateurStatistique.getTpsAttenteMoyFileReparation() - simulateur.getTempsToujoursFileRep()) + ";" + (IndicateurStatistique.getTpsAttenteMoyFileControle() - simulateur.getTempsToujoursFileCont()) + ";" + IndicateurStatistique.getTauxUtilisationReparation() + "\n");
+
+            bw.close();
+
+        } catch (Exception e) {
+            System.out.println("Erreur write file: " + e.getMessage());
+        }
+    }
+
+    public static void exportTempsMaxToCSV(Simulateur simulateur, String nomFichier){
+        File file = new File("./results/" + nomFichier);
+
+        try {
+            FileWriter fw = new FileWriter(file, true);
+
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            bw.write(IndicateurStatistique.getTempsMaxAttReparation() + ";" + IndicateurStatistique.getTempsMaxAttControle() + "\n");
 
             bw.close();
 
