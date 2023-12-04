@@ -145,13 +145,14 @@ public class FonctionsUtiles {
 
     public static String tempsToHeure(Double temps) {
         // Traduit le temps en pourcentage en un temps en heure
-        Double tempsRes = 60 * temps;
+        Double tempsRes = temps;
 
-        // Calcule le nombre d'heures & de minutes
-        Double min = tempsRes % 60;
-        int heures = (int) (tempsRes % 60 - min);
+        // Nombre d'heures est la partie entière
+        int heures = tempsRes.intValue();
 
-        // Retourne un affichage au bon format
+        // Nombre de minutes est la partie décimale * 60
+        int min = (int) ((tempsRes - heures) * 60);
+
         return heures + " heure(s) " + min + " minute(s)";
     }
 }
