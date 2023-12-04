@@ -7,5 +7,5 @@ public class Constantes {
     public static final double tempsMinReparation = 2.8;
     public static final double tempsMaxReparation = 5.5;
     public static int dureeSimulation = 160;
-    public static final int nbBusMaxControle = 120;
+    public static final int nbBusMaxControle = 50000;
 }

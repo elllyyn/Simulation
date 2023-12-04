@@ -101,6 +101,9 @@ public class FonctionsUtiles {
 
     public static void exportMethodeWelchToCSV(List<Double> moyennes, String nomFichier) {
         File file = new File("./results/" + nomFichier);
+        if (file.exists()) {
+            file.delete();
+        }
 
         try {
             FileWriter fw = new FileWriter(file, true);
