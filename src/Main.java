@@ -17,7 +17,8 @@ public class Main {
             MethodeWelch.setNumSimulateur(MethodeWelch.getNumSimulateur()+1);
         }
 
-        for(int w = 400; w <= 100; w+=25){
+
+        for(int w = 1000; w <= 10000; w+=1000){
             FonctionsUtiles.exportMethodeWelchToCSV(MethodeWelch.appliquerMethode(w), "RP_w"+w+".csv");
         }
     }

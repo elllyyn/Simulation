@@ -17,7 +17,7 @@ public class FonctionsUtiles {
     public static double loiExponentielle(double lambda) {
         double u = random.nextDouble();
 
-        return -Math.log(1 - u) / lambda;
+        return -Math.log(1 - u) / (1 / lambda);
     }
 
     public static double loiUniforme(double a, double b) {
@@ -157,13 +157,11 @@ public class FonctionsUtiles {
 
     public static String tempsToHeure(Double temps) {
         // Traduit le temps en pourcentage en un temps en heure
-        Double tempsRes = temps;
+        Double tempsRes = 60 * temps;
 
-        // Nombre d'heures est la partie entière
-        int heures = tempsRes.intValue();
-
-        // Nombre de minutes est la partie décimale * 60
-        int min = (int) ((tempsRes - heures) * 60);
+        // Calcule le nombre d'heures & de minutes
+        Double min = tempsRes % 60;
+        int heures = (int) (tempsRes % 60 - min);
 
         return heures + " heure(s) " + min + " minute(s)";
     }
