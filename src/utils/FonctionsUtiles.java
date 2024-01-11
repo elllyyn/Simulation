@@ -88,7 +88,7 @@ public class FonctionsUtiles {
             BufferedWriter bw = new BufferedWriter(fw);
 
             // Écrivez les données dans le fichier
-            bw.write((IndicateurStatistique.getTpsAttenteMoyFileReparation() - simulateur.getTempsToujoursFileRep()) + ";" + (IndicateurStatistique.getTpsAttenteMoyFileControle() - simulateur.getTempsToujoursFileCont()) + ";" + IndicateurStatistique.getTauxUtilisationReparation() + "\n");
+            bw.write((IndicateurStatistique.getTpsAttenteMoyFileReparation()) + ";" + IndicateurStatistique.getTpsAttenteMoyFileControle() + ";" + IndicateurStatistique.getTauxUtilisationReparation() + "\n");
 
             bw.close();
 
